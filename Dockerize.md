@@ -10,15 +10,25 @@
 
 3.	Docker images'ten indirilen alphine image'ı görüntelenmektedir. Run'a basılarak çalıştırılır.
 
+![dockerize_1](https://github.com/yunusemre002/Papers/blob/main/photos/dockerize_1.gif?raw=true)
+
 4.	Açılan ekrandan bir isim verilir. Ardından bilgisayardaki bir alan mount edilir. Bu işlem sayesinde alphin içinden Local pc'mizin bağlı klasörüne bağlanabiliriz. Bir tarafta yapılan değişiklikler anlık olarak diğer tarafta da yapılmış olur.
+
+![dockerize_2](https://github.com/yunusemre002/Papers/blob/main/photos/dockerize_2.gif?raw=true)
 
 5.	Oluşturulan Container: Containers / Apps sekmesinden görüntülenmektedir. Oluşturulan kontainer içine girebilmek için CLI'ya tıklanır ve bir komut satırı ile karşılaşılır. Artık Alphinimizin içerisindeyiz.
 
-6.	home/node ile PC'mizdeki node.JS kodunun olduğu yeri paylaşmıştık/bağlamıştık. Görüldüğü üzre alphine üzerinden görüntüleyebiliyoruz.    
+![dockerize_3](https://github.com/yunusemre002/Papers/blob/main/photos/dockerize_3.gif?raw=true)
+
+6.	home/node ile PC'mizdeki node.JS kodunun olduğu yeri paylaşmıştık/bağlamıştık. Görüldüğü üzre alphine üzerinden görüntüleyebiliyoruz.   
+
+![dockerize_4](https://github.com/yunusemre002/Papers/blob/main/photos/dockerize_4.gif?raw=true)
 
 7.	Şimdi sırada node Js i çalıştırmak için Alphin içine npm kurulumu kaldı. Bu işlemide yaptıktan sonra kodumuzu çalıştırabiliriz. 
 
 8.	apk add --update nodejs nodejs-npm komutu node js'i çalıştırmak için gerekli olan npm modülü kurulur.
+
+![dockerize_5](https://github.com/yunusemre002/Papers/blob/main/photos/dockerize_5.gif?raw=true)
 
 9.	Artık kodumuzu çalıştırabiliriz. Son olarak bir hatırlatma yapmak istiyorum. Eğer kodunuzun içinde database veya herhangi bir yere  bağlantı için "localhost" ifadesi geçiyorsa bu yerler Local Pc'nizin IP'si ile değiştirilmelidir. (Örneğin 192.168.90.35 olarak ayarlanmalı localhost yazan yerler.)
 
