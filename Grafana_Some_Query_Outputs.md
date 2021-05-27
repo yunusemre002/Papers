@@ -61,15 +61,25 @@ from(bucket: "BoyahaneVTAG_Agg")
   ```
 
             _start                   _stop                _field    _measurement    department   location machineID  shift  _value      _time 
-  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2  ÖZEN       20     shift-1  1280   2021-05-27T00:00:00.000Z  
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2  ÖZEN       20     shift-1  1280   2021-05-27T00:00:00.000Z  **
 
-            _start                   _stop                _field    _measurement    department   location machineID  shift  _value      _time 
+            _start                   _stop                _field      _measurement   department  location machineID  shift  _value      _time 
   2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2  ÖZEN       20     shift-2  1014   2021-05-26T00:00:00.000Z
-  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2  ÖZEN       20     shift-2  1290   2021-05-27T00:00:00.000Z  
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2  ÖZEN       20     shift-2  1290   2021-05-27T00:00:00.000Z  **
 
-            _start                   _stop                _field    _measurement    department   location machineID  shift  _value      _time  
+            _start                   _stop                _field      _measurement   department  location machineID  shift  _value      _time  
   2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2   ÖZEN      20     shift-3   0     2021-05-25T00:00:00.000Z
   2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2   ÖZEN      20     shift-3  1253   2021-05-26T00:00:00.000Z
-  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2   ÖZEN      20     shift-3  2653   2021-05-27T00:00:00.000Z
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2   ÖZEN      20     shift-3  2653   2021-05-27T00:00:00.000Z  **
   ```
-  şikildeki gibi sorgunun bir kısmını içermektedir. 
+  yukarıdaki tablo group oladan ki sorgunun bir kısmını içermektedir. görüldüğü gibi aynı timestampli 3 ayrı table'da bilgiler vardır bu bilgileri tek bir tabloda toplamak için ilgili komut uygulanır ve 27. günün verileri aşağıdaki gibi 1 tablede birleştirilmiş olur.
+
+  ```
+           _start                   _stop                 _field      _measurement  department   location machineID  shift  _value      _time  
+  2021-05-20T16:57:04.405Z  2021-05-27T16:57:04.405Z  CONS_HOT_WATER  Consumptions  department-5    ÖZEN    20       shift-1  1280   2021-05-27T00:00:00.000Z
+  2021-05-20T16:57:04.405Z  2021-05-27T16:57:04.405Z  CONS_HOT_WATER  Consumptions  department-5    ÖZEN    20       shift-2  1290   2021-05-27T00:00:00.000Z
+  2021-05-20T16:57:04.405Z  2021-05-27T16:57:04.405Z  CONS_HOT_WATER  Consumptions  department-5    ÖZEN    20       shift-3  2763   2021-05-27T00:00:00.000Z
+  ```
+  Daha sonra bu bilgi sum edilerek toplanır.
+  sonra tekrar groupby machineID denilerek aynı makinerler ait bilgilerin tek bir tabloda gösterilmesi sağlanır.
+  
