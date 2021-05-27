@@ -1,3 +1,4 @@
+# **Shift Günlük Trend**
 ```
 import "date"
 from(bucket: ${bucket_name:json})
@@ -15,6 +16,41 @@ from(bucket: ${bucket_name:json})
 bu _time etiketi sorgular kısmında ileri geri oynatılark gösterilebilir. Bu gösterim ana veriyi bozmaz. Sadece o anda o sorguda ileri/geri olarak görünmek istediği için öyle gösterilmiş olur.
 `|> timeShift(duration: 3h, columns: ["_start", "_stop", "_time"])` denilerek mevcut saat gösterimlerinin tümüne _start, _stop ve _time sütunlarına +3 saat ekle demektir.
 
-* **|> aggregateWindow(every: 1d, fn: spread, createEmpty: false, timeSrc:"_start")** denilerek 1 günlük verileri al, **spread** en büyük değerden en küçük değeri çıkart. 
-Bu değer sürekli artan bir değer olduğu için enb -enk = gün sonundan gün başını çıkart = günlük tüketimi al. **timeSrc** ile aggWindow fonsksiyonunun default değerini
-  
+* **|> aggregateWindow(every: 1d, fn: spread, createEmpty: false, timeSrc:"_start")** denilerek 1 günlük verileri al, 
+  * **spread** en büyük değerden en küçük değeri çıkart. Bu değer sürekli artan bir değer olduğu için enb -enk = gün sonundan gün başını çıkart = günlük tüketimi al. 
+  * **timeSrc** ile aggWindow fonsksiyonunun default değerini yani **_stop** bilgisini **_start** bilgisi ile değiştirilmiş oldu. Böylelikle 1 günlük aggregate edilen dataya `_time` title olarak o günün tarihi yazılmış olacak. Örneklemek gerkirse. 15.05.2021-00:00:00 dan 16:05:2021-00:00:00 arasındaki bilgiyi 15:05:2021 e ait bilgidir diye kaydedecek. Bu trend gösteriminde kafa karışıklığını önlemek amaçlıdır.
+
+
+# **Shift Toplam tüketim:**
+```
+import "date"
+from(bucket: ${bucket_name:json})
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> timeShift(duration: 3h, columns: ["_start", "_stop", "_time"])
+  |> filter(fn: (r) => r["_measurement"] == "Consumptions")
+  |> filter(fn: (r) => contains( value: r["_field"] , set: ${Type:json}))
+  |> filter(fn: (r) => contains(value: r["machineID"], set:${machineID:json}))
+  |> filter(fn: (r) => r["shift"] == "shift-1")
+  |> aggregateWindow(every: 1d, fn: spread)
+  |> drop(columns: ["machineID", "department"])
+  |> sum(column: "_value")
+  |> yield(name: "mean")
+```
+
+* Amacımın tüm makinalara ait toplam tüketimi vermek. aggWindow öncesi zaten yukarıdaki sorgunun aynısı aggwindow sonucunda eğer birden fazla makine seçilirse bu makinelerin herbirisi için ayrı ayrı günlük toplam bilgisi oluşturulur. Biz tüm makinelerin toplamını istediğimiz için machineID ayırt edici özelliğini siliyoruz. Geriye department ayırt edici özelliği kalıyor ve veriler departmentlere göre tablelere ayrılmış oluyor. daha sonra bu department noyu siliyoruz. tüm değerlerr tek bir tabloda toplanmış oluyor son olarak sum denilip tüm value'ler toplanır.  Özetler ayrı ayrı oluşan table değerleri birleştirilip toplanmaktadır.
+
+# ** Tüm shiftler toplamı günlük trend**
+```
+import "date"
+from(bucket: "BoyahaneVTAG_Agg")
+  |> range(start: 2021-05-21T21:00:00Z, stop: 2021-05-25T20:59:59Z)
+  |> timeShift(duration: 3h, columns: ["_start", "_stop", "_time"])
+  |> filter(fn: (r) => r["_measurement"] == "Consumptions")
+  |> filter(fn: (r) => contains( value: r["_field"] , set:${Type:json}))
+  |> filter(fn: (r) => contains(value: r["machineID"], set:${machineID:json}))
+  |> aggregateWindow(every: 1d, fn: spread, createEmpty: false, timeSrc:"_start")
+  |> group(columns: ["_time", "machineID"], mode:"by")
+  |> sum(column: "_value")
+  |> group(columns: ["machineID"], mode:"by")
+  |> yield(name: "mean")
+```
