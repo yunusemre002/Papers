@@ -1,4 +1,4 @@
-# **Shift Günlük Trend**
+# **(Shift) Günlük Trend**
 ```
 import "date"
 from(bucket: ${bucket_name:json})
@@ -21,7 +21,7 @@ bu _time etiketi sorgular kısmında ileri geri oynatılark gösterilebilir. Bu 
   * **timeSrc** ile aggWindow fonsksiyonunun default değerini yani **_stop** bilgisini **_start** bilgisi ile değiştirilmiş oldu. Böylelikle 1 günlük aggregate edilen dataya `_time` title olarak o günün tarihi yazılmış olacak. Örneklemek gerkirse. 15.05.2021-00:00:00 dan 16:05:2021-00:00:00 arasındaki bilgiyi 15:05:2021 e ait bilgidir diye kaydedecek. Bu trend gösteriminde kafa karışıklığını önlemek amaçlıdır.
 
 
-# **Shift Toplam tüketim:**
+# **(Shift) Toplam tüketim:**
 ```
 import "date"
 from(bucket: ${bucket_name:json})
@@ -39,7 +39,8 @@ from(bucket: ${bucket_name:json})
 
 * Amacımın tüm makinalara ait toplam tüketimi vermek. aggWindow öncesi zaten yukarıdaki sorgunun aynısı aggwindow sonucunda eğer birden fazla makine seçilirse bu makinelerin herbirisi için ayrı ayrı günlük toplam bilgisi oluşturulur. Biz tüm makinelerin toplamını istediğimiz için machineID ayırt edici özelliğini siliyoruz. Geriye department ayırt edici özelliği kalıyor ve veriler departmentlere göre tablelere ayrılmış oluyor. daha sonra bu department noyu siliyoruz. tüm değerlerr tek bir tabloda toplanmış oluyor son olarak sum denilip tüm value'ler toplanır.  Özetler ayrı ayrı oluşan table değerleri birleştirilip toplanmaktadır.
 
-# ** Tüm shiftler toplamı günlük trend**
+
+# **(Sum of shifts) Günlük Trend**
 ```
 import "date"
 from(bucket: "BoyahaneVTAG_Agg")
@@ -54,3 +55,21 @@ from(bucket: "BoyahaneVTAG_Agg")
   |> group(columns: ["machineID"], mode:"by")
   |> yield(name: "mean")
 ```
+* Amaç shiftten bağımsız olarak bir günlük aggregate edilmiş verilrin trendini görmek..
+* `|> group(columns: ["_time", "machineID"], mode:"by")` aynı timestampe ait birden 3 tane kayıt var bunlar shift bilgisiyle ayrılıyorlar ve ayrı tablolar oluşturuyorlar. Bu 3 ayrı bilgiyi bir şekilde tek çatı altında toplamanın bir yolu grup fonsksiyonudur. aynı timestamp ve machineID bilgisini aynı anda barındıran satırları bir tablo olarak gösterme işini yapmaktadır. Bu fonksiyon sonrası ve öncesi tablolar değişir. yeni bir tablo düzeni oluşur.  
+
+  ```
+
+            _start                   _stop                _field    _measurement    department   location machineID  shift  _value      _time 
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2  ÖZEN       20     shift-1  1280   2021-05-27T00:00:00.000Z  
+
+            _start                   _stop                _field    _measurement    department   location machineID  shift  _value      _time 
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2  ÖZEN       20     shift-2  1014   2021-05-26T00:00:00.000Z
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2  ÖZEN       20     shift-2  1290   2021-05-27T00:00:00.000Z  
+
+            _start                   _stop                _field    _measurement    department   location machineID  shift  _value      _time  
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2   ÖZEN      20     shift-3   0     2021-05-25T00:00:00.000Z
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2   ÖZEN      20     shift-3  1253   2021-05-26T00:00:00.000Z
+  2021-05-20T16:20:02.811Z  2021-05-27T16:20:02.811Z  CONS_HOT_WATER  Consumptions  department-2   ÖZEN      20     shift-3  2653   2021-05-27T00:00:00.000Z
+  ```
+  şikildeki gibi sorgunun bir kısmını içermektedir. 
