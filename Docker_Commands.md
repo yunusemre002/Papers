@@ -12,7 +12,8 @@
 docker run -d --name=influxdb -p 8086:8086 -v influxdb_data:/var/lib/influxdb2 -v influxdb_conf:/etc/influxdb2 -e DOCKER_INFLUXDB_INIT_MODE=setup -e DOCKER_INFLUXDB_INIT_USERNAME=admin -e DOCKER_INFLUXDB_INIT_PASSWORD=password -e DOCKER_INFLUXDB_INIT_ORG=myOrganizations -e DOCKER_INFLUXDB_INIT_BUCKET=myBucketName -e DOCKER_INFLUXDB_INIT_RETENTION=1w -e DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=u6jYmXFKfgdfgdxcbvxcbcvxbcvb-fbdfgd-fbgdfgdz-nn8vfNq6m influxdb
 ```
 
-
+# Postgrsql
+`docker run -p 5050:80 -e 'PGADMIN_DEFAULT_EMAIL=yunus.demir@gmail.com' -e 'PGADMIN_DEFAULT_PASSWORD=password' --name=pgadmin4 -d dpage/pgadmin4`
 
 
 
