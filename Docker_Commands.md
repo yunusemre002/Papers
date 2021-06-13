@@ -17,5 +17,5 @@ docker run -d --name=influxdb -p 8086:8086 -v influxdb_data:/var/lib/influxdb2 -
 
 
 
-# Change restrt policy
+# Change restart policy
 `docker container update --restart always [konteynerName]` 
