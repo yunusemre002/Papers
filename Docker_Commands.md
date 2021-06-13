@@ -5,7 +5,7 @@
 # Grafana  
 `docker run -d --name=grafana -p 3000:3000 -v grafana_data:/var/lib/grafana grafana/grafana`  
 
-# influxdb:
+# Influxdb
 `docker run -d --name=influxdb -p 8086:8086 -v influxdb_data:/var/lib/influxdb2 -v influxdb_conf:/etc/influxdb2 influxdb`
  
 ```
