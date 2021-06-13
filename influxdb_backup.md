@@ -20,14 +20,5 @@ ________________________________________________________________________________
 docker cp C:\\Users\YED\Desktop\yedek influxdb:/home
 influx restore --token oA88Brj9Ego3Uqw3oPfC4x_KlctGwCzC2CC76DkWR7wORvIfKSsJoxgE6ycvOZxD69d9P7LS6zqPW1aFPLf0Uw== /home/yedek
 
-879013aaba162d86        Eliar
-a8ec0197c9542223        eliar
-influx org delete -i 879013aaba162d86 -t tk_nqEO3SFm6S5lbznzD5-OWjWif_2BGf-qmixEEpfjS1Tz65BXsC3V_X06TOpZUYH_p8NeMqzR8tEg-CFe5qg== 
-
-
-|> keep(columns: ["_time", "_value"])
-|> sort(columns:["_time"])
-
-
 influx backup --bucket-id 4dc2f27ea414a741 --token u6jYmXFKk9-2P4lDIgTFCteaH-f8kElBKKlgTBpl8IHcj9vLa5l1yyQ5flVqaAw5SQDvKClKYOtQnn8vfNq6kA== /home/yedek
 
