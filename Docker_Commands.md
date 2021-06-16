@@ -13,7 +13,7 @@ docker run -d --name=influxdb -p 8086:8086 -v influxdb_data:/var/lib/influxdb2 -
 ```
 
 # Postgrsql
-`docker run -d --name=postgres -p 5432:5432 -e POSTGRES_PASSWORD=el1984 -e PGDATA=/var/lib/postgresql/data/pgdata -v postgrsql_data:/var/lib/postgresql/data postgres`
+`docker run -d --name=postgres -p 5432:5432 -e POSTGRES_PASSWORD=password -e PGDATA=/var/lib/postgresql/data/pgdata -v postgrsql_data:/var/lib/postgresql/data postgres`
 
 # Pgadmin
 `docker run -d --name=pgadmin4 -p 5050:80 -e 'PGADMIN_DEFAULT_EMAIL=yunus.demir@gmail.com' -e 'PGADMIN_DEFAULT_PASSWORD=password' dpage/pgadmin4`
