@@ -3,3 +3,6 @@
 `ls -s` 	to list file size,  
 `ls -sh` 	for human readable sizes.  
 `du -h` 	for human readable sizes for directories  
+  
+* find needs a starting point, and the . (dot) points to the current directory.  
+`find . -name "foo*"`
