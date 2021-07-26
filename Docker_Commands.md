@@ -18,6 +18,8 @@ docker run -d --name=influxdb -p 8086:8086 -v influxdb_data:/var/lib/influxdb2 -
 # Pgadmin
 `docker run -d --name=pgadmin4 -p 5050:80 -e 'PGADMIN_DEFAULT_EMAIL=yunus.demir@gmail.com' -e 'PGADMIN_DEFAULT_PASSWORD=password' dpage/pgadmin4`
 
+# Metabase
+`docker run -d --name metabase -p 3010:3000 -v metabase_data:/metabase-data -e "MB_DB_FILE=/metabase-data/metabase.db" metabase/metabase`
 
 
 # Change restart policy
