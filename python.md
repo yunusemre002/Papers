@@ -32,3 +32,14 @@ Name: 0, dtype: int64
 `print(df2.iloc[0]["col1"])`   
 10  
  
+
+`print(df2.col1)`  
+```
+0    10
+1    40
+2    70
+```  
+
+`print(df2.col1.values)`  
+ [10 40 70]  
+ 
