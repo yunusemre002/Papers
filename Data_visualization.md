@@ -16,8 +16,8 @@
 
 
 ![data_visualization_1](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_1.png?raw=true)
-![data_visualization_2](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_2.png?raw=true)
-![data_visualization_3](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_3.png?raw=true)
+![data_visualization_2](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_2.jpg?raw=true)
+![data_visualization_3](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_3.jpg?raw=true)
 
 
       
