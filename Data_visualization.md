@@ -13,6 +13,7 @@
 - Parlak renkler göz yorar. Curcuna çıkarır.
 - 4 ten fazla renk kullanma
 - Yığın grafik için toplamların da bir anlamı olması lazım.
+- Gri, ötekinin (diğerinin) rengidir. Tabloda önce herşeyi gri yapıp, sonra öne çıkarılmak istenilen renklendirilebilir.
 
 
 ![data_visualization_1](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_1.png?raw=true)
