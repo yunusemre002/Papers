@@ -1,6 +1,6 @@
 # 1. **Custom**  
 Dashboardın üst kısmında seçilebilir olarak gelmesini istediğiniz stringlerin el il eyazılmasıdır. Bu stringler selectable olarak listelenir. 
-Daha sonra sorgu içinden `${queryname:json}` denilerek çağırılır.  
+Daha sonra sorgu içinden `${queryname:json}` denilerek çağırılır. Göterilmesi istenilen ile olması gereken değerler farklı olabilir bu durumda `göterilecek_değer_1 : gerçek_değer, gösterilecek_değer_2 : gerçek_değer_2` şeklinde yazım gerçekleştirilir. 
 ```|> filter(fn: (r) => contains( value: r["_field"] , set: ${Type:json}))```  
 ![Grafana_Variables_Types_1_Custom](https://github.com/yunusemre002/Papers/blob/main/photos/Grafana_Variables_Types_1_Custom.png?raw=true)
 
