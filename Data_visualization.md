@@ -14,8 +14,8 @@
 - 4 ten fazla renk kullanma
 - Yığın grafik için toplamların da bir anlamı olması lazım.
 - Gri, ötekinin (diğerinin) rengidir. Tabloda önce herşeyi gri yapıp, sonra öne çıkarılmak istenilen renklendirilebilir.
-
-
+\n
+- Aşağıda ölüm bilgilerinden 2 ayrı grafik oluştulmuş. Olması gereken hangisi?
 ![data_visualization_1](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_1.png?raw=true)
 ![data_visualization_2](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_2.jpg?raw=true)
 ![data_visualization_3](https://github.com/yunusemre002/Papers/blob/main/photos/data_visualization_3.jpg?raw=true)
