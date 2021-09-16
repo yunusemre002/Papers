@@ -13,7 +13,24 @@ docker run -d --name=influxdb -p 8086:8086 -v influxdb_data:/var/lib/influxdb2 -
 ```
 
 # Postgrsql
-`docker run -d --name=postgres -p 5432:5432 -e POSTGRES_PASSWORD=password -e PGDATA=/var/lib/postgresql/data/pgdata -v postgrsql_data:/var/lib/postgresql/data postgres`
+Postgrql i docker-copmpose.yml olarak kadedip `docker-compose up -d` ile çalıştırmak şuan için daha stabil.
+```
+version: "3.6"
+services:
+    postgres:
+        image: postgres:13
+        container_name: postgres
+        restart: unless-stopped
+        ports:
+            - '5432:5432'
+        volumes:
+            - postgres:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=password
+volumes: 
+  postgres
+  ```
 
 # Pgadmin
 `docker run -d --name=pgadmin4 -p 5050:80 -e 'PGADMIN_DEFAULT_EMAIL=yunus.demir@gmail.com' -e 'PGADMIN_DEFAULT_PASSWORD=password' dpage/pgadmin4`
