@@ -6,3 +6,5 @@
   
 * find needs a starting point, and the . (dot) points to the current directory.  
 `find . -name "foo*"`
+
+`chown yunus file` --> Changes the ownership of the file from its current owner to user bob.
