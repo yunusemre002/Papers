@@ -38,6 +38,9 @@ volumes:
 # Metabase
 `docker run -d --name metabase -p 3010:3000 -v metabase_data:/metabase-data -e "MB_DB_FILE=/metabase-data/metabase.db" metabase/metabase`
 
+# RabiitMQ
+`docker run -d --name rabbitmq3 -p 5672:5672 -p 15672:15672 rabbitmq:3.9-management`
+
 
 # Change restart policy
 `docker container update --restart always [konteynerName]` 
