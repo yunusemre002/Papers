@@ -8,3 +8,6 @@
 `find . -name "foo*"`
 
 `chown yunus file` --> Changes the ownership of the file from its current owner to user bob.
+
+* To install a .deb file by opening a terminal and typing:
+  `sudo dpkg -i package_file.deb`
