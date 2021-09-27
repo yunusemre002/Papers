@@ -9,6 +9,7 @@
   * Planlama ve mühendislik büro gibi verilerin saklandığı diğer bilgi sistemlerinden kritik verileri de dâhil ederek tüm verilerin ağ üzerinden erişilir olmasını sağlar.
   * ERP’den iş emirlerini alıp düzenleyerek üretim birimlerine aktarır. Aynı zamanda vakalara eş zamanlı detaylı planlama ile tepki vererek verimliliği ve kaliteyi artırır.[1]
 * **ERP (Enterprise Resource Planning):** Kurumsal/işletme kaynak planlaması, işletmelerde mal ve hizmet üretimi için gereken işgücü, makine, malzeme gibi kaynakların verimli bir şekilde kullanılmasını sağlayan bütünleşik yönetim sistemlerine verilen genel addır. 
+* **SOAP (Simple Object Access Protocol):** Basit Nesne Erişim Protokolü, 
 
 ## ??
 * Optimum parametresi ile değerlerini ayarlamak. %1 bile düşürmek önemli... 
