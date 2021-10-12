@@ -12,3 +12,21 @@
 İf ".gitignore" doesn't work, run do below comment then it will run.  
 `git rm -rf --cached .`
 `git add .`
+
+
+* Ubuntu'ya docker kurulurken
+  ```
+  yed@YEDPC:~$  sudo apt-get install docker-ce docker-ce-cli containerd.io
+  Reading package lists... Done
+  Building dependency tree       
+  Reading state information... Done
+  Package docker-ce is not available, but is referred to by another package.
+  This may mean that the package is missing, has been obsoleted, or
+  is only available from another source
+
+  E: Package 'docker-ce' has no installation candidate
+  E: Unable to locate package docker-ce-cli
+  E: Unable to locate package containerd.io
+  E: Couldn't find any package by glob 'containerd.io'
+  ```
+  sadece `sudo apt-get install containerd.io` yazman yeterli.
