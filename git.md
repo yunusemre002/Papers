@@ -8,6 +8,19 @@ git config --global user.name "Yunus Demir"
 git config --global user.email "yunus-emredemir@hotmail.com"
 ```
 
+Set SSH key 
+https://docs.gitlab.com/ee/ssh/index.html#generate-an-ssh-key-pair
+```
+ssh-keygen -t` 
+ssh-keygen -t ed25519 -C "yunus.demir@eliarge.com"
+xclip -sel clip < ~/.ssh/id_ed25519.pub
+```
+sonra git bunu gitlab hesabına ekle.  
+```
+git clone git@gitlab.com:eliarelektronik/data-science/vtag.git
+```
+
+
 Create a new repository  
 ```
 git clone https://github.com/data-science/...ali.git
