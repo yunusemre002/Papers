@@ -39,4 +39,11 @@ diff = from(bucket: "pc-inf")
   |> yield(name: "diff")
   ```
 
-`
+```
+influx delete \
+  --bucket "boyahane_VTAG" \
+  --start 2021-01-01T00:00:00Z \
+  --stop 2021-12-01T00:00:00Z \
+  --org "eliar" \
+  --predicate '_measurement="machine_info"'
+```
