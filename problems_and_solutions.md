@@ -30,3 +30,5 @@
   E: Couldn't find any package by glob 'containerd.io'
   ```
   sadece `sudo apt-get install containerd.io` yazman yeterli.
+
+* <s>böyle yazmak için</s> `<s> ... </s>` yapsıı kullanılır.
