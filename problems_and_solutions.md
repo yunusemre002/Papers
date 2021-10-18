@@ -32,3 +32,13 @@
   sadece `sudo apt-get install containerd.io` yazman yeterli.
 
 * <s>böyle yazmak için</s> `<s> ... </s>` yapsıı kullanılır.
+
+* **linux bilgisayarında wired and wifi varken internet bağlantısının kopması**  
+  https://askubuntu.com/questions/263572/can-i-use-wi-fi-and-cable-ethernet-networking-at-same-time 
+
+  ![wifi_connection_lost_0](https://github.com/yunusemre002/Papers/blob/main/photos/wifi_connection_lost_0.png?raw=true)  
+  Gateway bilgisini boş bırak  
+  ![wifi_connection_lost_1](https://github.com/yunusemre002/Papers/blob/main/photos/wifi_connection_lost_1.png?raw=true)  
+  "Use this connection only for resources on its network" bilgisini işaretle.  
+  ![wifi_connection_lost_2](https://github.com/yunusemre002/Papers/blob/main/photos/wifi_connection_lost_2.png?raw=true)  
+  ![wifi_connection_lost_3](https://github.com/yunusemre002/Papers/blob/main/photos/wifi_connection_lost_3.png?raw=true)  
