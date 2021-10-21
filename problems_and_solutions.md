@@ -14,7 +14,7 @@
 `git add .`
 
 
-* Ubuntu'ya docker kurulurken
+## Ubuntu'ya docker kurulurken
   ```
   yed@YEDPC:~$  sudo apt-get install docker-ce docker-ce-cli containerd.io
   Reading package lists... Done
@@ -29,11 +29,17 @@
   E: Unable to locate package containerd.io
   E: Couldn't find any package by glob 'containerd.io'
   ```
-  sadece `sudo apt-get install containerd.io` yazman yeterli.
+  sadece `sudo apt-get install containerd.io` yazman yeterli değil :) .
+  https://unix.stackexchange.com/questions/363048/unable-to-locate-package-docker-ce-on-a-64bit-ubuntu 
+  ```
+  sudo apt install apt-transport-https ca-certificates curl software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+  ```
 
 * <s>böyle yazmak için</s> `<s> ... </s>` yapsıı kullanılır.
 
-* **linux bilgisayarında wired and wifi varken internet bağlantısının kopması**  
+## **Linux bilgisayarında wired and wifi varken internet bağlantısının kopması**  
   https://askubuntu.com/questions/263572/can-i-use-wi-fi-and-cable-ethernet-networking-at-same-time 
 
   ![wifi_connection_lost_0](https://github.com/yunusemre002/Papers/blob/main/photos/wifi_connection_lost_0.png?raw=true)  
@@ -42,3 +48,9 @@
   "Use this connection only for resources on its network" bilgisini işaretle.  
   ![wifi_connection_lost_2](https://github.com/yunusemre002/Papers/blob/main/photos/wifi_connection_lost_2.png?raw=true)  
   ![wifi_connection_lost_3](https://github.com/yunusemre002/Papers/blob/main/photos/wifi_connection_lost_3.png?raw=true)  
+
+## Postgres backup:  
+  https://www.postgresqltutorial.com/postgresql-backup-database/
+  `pg_dump -U username -W -F t database_name > c:\backup_file.tar`  
+  https://stackoverflow.com/questions/2732474/restore-a-postgres-backup-file-using-the-command-line  
+  `pg_restore -U digitalfactory -d digitalfactory -1 backup_file.tar`
