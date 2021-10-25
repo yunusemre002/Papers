@@ -53,4 +53,4 @@
   https://www.postgresqltutorial.com/postgresql-backup-database/
   `pg_dump -U username -W -F t database_name > c:\backup_file.tar`  
   https://stackoverflow.com/questions/2732474/restore-a-postgres-backup-file-using-the-command-line  
-  `pg_restore -U digitalfactory -d digitalfactory -1 backup_file.tar`
+  `pg_restore --clean -U digitalfactory -d digitalfactory -1 backup_file.tar`
