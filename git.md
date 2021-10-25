@@ -50,16 +50,16 @@ git push -u origin --all
 git push -u origin --tags
 ```
 
-# git tags
-git checkout master
+# **git tags**
+`git checkout master`
 
 ### Lightweight tag
-git tag my_lightweight_tag
+`git tag my_lightweight_tag`
 
 ### Annotated tag
-git tag -a v1.0 -m 'Version 1.0'
+`git tag -a v1.0 -m 'Version 1.0'`
 
 ### Show list of the existing tags
-git tag
+`git tag`
 
-git push origin --tags
+`git push origin --tags`
