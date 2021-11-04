@@ -54,3 +54,6 @@
   `pg_dump -U username -W -F t database_name > c:\backup_file.tar`  
   https://stackoverflow.com/questions/2732474/restore-a-postgres-backup-file-using-the-command-line  
   `pg_restore --clean -U digitalfactory -d digitalfactory -1 backup_file.tar`
+  
+## Docker Network on Windows
+   Docker'ı windows üzerinde `network_mode = Host` olarak kullanamaz. Bu sebeple bridge mod olarak kullanılır. Bridge mod da kullanırken aynı networkte bir çok container barınabilir. Bu containerler birbirleriyle haberleşirken `http://container_name:default_port_address` olarak konuşmalılardır. Docker, container_name kısmını ip'ye çevirip öyle kullanır. Ayrıca oraya ip yazlırsa docker her restart olduğunda tüm ip ler değişeceği için yeniden ayarlama yapmak gerkecektir. Örneğin DF isimli bir netwokümüzde 3 adet container olsun isimleri: influxdb, grafana ve nodered. Nodered'ten influxdb'ye bağlanmak isteniliyorsa `http://influxdb:8086` yazılarak bağlanması sağlanabilir. influxdbnin port 8090:8086 olarak belirlenmeiş olsa dahi aynı networkten erişim sağlanırken 8086 portuna istek gönderilir.
