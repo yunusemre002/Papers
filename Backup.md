@@ -24,9 +24,12 @@ docker/home to local (run at localde)
 `influx restore --token oA88Brj9Ego3Uqw3oPfC4x_KlckWR7wORvIfKSsJoxg1aFPLf0Uw== /home/yedek`  
 
 --------------------------------------------------------------------------------------------------------------
-# Postgresql
+# Postgresql  
+## Backup
 
-`pg_dump -U postgres -W -F t dvdrental > c:\pgbackup\dvdrental.tar`
+`pg_dump -U postgres -W -F t dvdrental > c:\pgbackup\dvdrental.tar`  
+  or  
+`pg_dump -U postgres -Fc digitalfactory > /home/backup_file_v3.dump`
 
 **-U postgres:**  specifies the user to connect to the PostgreSQL database server. We used the postgres in this example.  
 
@@ -48,6 +51,18 @@ docker/home to local (run at localde)
   ### Sadece şemanın backupını almak için 
 
   `pg_dump -U postgres --schema-only > c:\pgdump\definitiononly.sql`  
+  
+ 
+> The most flexible output file formats are the “custom” format (-Fc) and the “directory” format (-Fd). They allow for selection and reordering of all archived items, support parallel restoration, and are compressed by default. The “directory” format is the only format that supports parallel dumps.
+ 
+ ## Restore
+ 
+ The  pg_restore allows you to perform parallel restores using the  -j option to specify the number of threads for restoration. Each thread restores a separate table simultaneously, which speeds up the process dramatically. Currently, the  pg_restore support this option for the only custom file format.
+
+`psql -U username -f backupfile.sql`
+  
+  
+  
   
   
   [postgresql-backup](https://www.postgresqltutorial.com/postgresql-backup-database/)
