@@ -25,6 +25,7 @@ sudo apt install apt-transport-https ca-certificates curl software-properties-co
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 ```
+Tüm komutlrda `sudo` eki kullanamdan yazmak için kullanıcıya izin verilmesi gerekir. `sudo usermod -aG docker $USER` dedikten sonra bilgisayarı reboot edersen [bu iş tamamdır.](https://docs.docker.com/engine/install/linux-postinstall/)
 
 
 ### 4- NodeJS 14:
