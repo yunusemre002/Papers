@@ -33,10 +33,12 @@ curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt -y install nodejs
 ```
 
-  
+### 5- VSCode:
+```
+sudo snap install --classic code
+```
     
-      
-      
+### 6- 
 
 
 
@@ -47,4 +49,6 @@ sudo apt -y install nodejs
 [1- Teamviewer](https://linuxize.com/post/how-to-install-teamviewer-on-ubuntu-18-04/)  
 [2- Chrome](https://linuxize.com/post/how-to-install-google-chrome-web-browser-on-ubuntu-18-04/)    
 [3- Docker](https://unix.stackexchange.com/questions/363048/unable-to-locate-package-docker-ce-on-a-64bit-ubuntu)  
-[4- NodeJS:14](https://computingforgeeks.com/install-node-js-14-on-ubuntu-debian-linux/)
+[4- NodeJS:14](https://computingforgeeks.com/install-node-js-14-on-ubuntu-debian-linux/)  
+[5- VSCode](https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-20-04/)  
+[6- ]
