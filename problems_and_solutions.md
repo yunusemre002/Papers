@@ -57,3 +57,14 @@
   
 ## Docker Network on Windows
    Docker'ı windows üzerinde `network_mode = Host` olarak kullanamaz. Bu sebeple bridge mod olarak kullanılır. Bridge mod da kullanırken aynı networkte bir çok container barınabilir. Bu containerler birbirleriyle haberleşirken `http://container_name:default_port_address` olarak konuşmalılardır. Docker, container_name kısmını ip'ye çevirip öyle kullanır. Ayrıca oraya ip yazlırsa docker her restart olduğunda tüm ip ler değişeceği için yeniden ayarlama yapmak gerkecektir. Örneğin DF isimli bir netwokümüzde 3 adet container olsun isimleri: influxdb, grafana ve nodered. Nodered'ten influxdb'ye bağlanmak isteniliyorsa `http://influxdb:8086` yazılarak bağlanması sağlanabilir. influxdbnin port 8090:8086 olarak belirlenmeiş olsa dahi aynı networkten erişim sağlanırken 8086 portuna istek gönderilir.
+
+## Remove SSH password question
+**Local:**  
+- `ssh-keygen -t rsa`  
+- `ssh-copy-id root@192.168.1.55` (192.168.1.55 is remote pc ip) enter password...  
+- it has been finished. Anymore it can be entered without password.  
+- `ssh root@192.168.88.235`  
+
+
+
+
