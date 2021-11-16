@@ -48,21 +48,45 @@ docker/home to local (run at localde)
 
 > `pg_dumpall` komutuda var ama bunun kullanılması önerilmiyor bunun yerine tüm db lerinizin backupını tek tek alın hem daha kısa sürer hem hangisinin ne kadar sürdüğünü görmüş olursunuz diyor.
 
-  ### Sadece şemanın backupını almak için 
+  ### Backup for just schema
 
   `pg_dump -U postgres --schema-only > c:\pgdump\definitiononly.sql`  
   
  
-> The most flexible output file formats are the “custom” format (-Fc) and the “directory” format (-Fd). They allow for selection and reordering of all archived items, support parallel restoration, and are compressed by default. The “directory” format is the only format that supports parallel dumps.
+> The most flexible output file formats are the “custom” format (-Fc) and the “directory” format (-Fd). They allow for selection and reordering of all archived items, support parallel restoration, and are compressed by default. The “directory” format is the only format that supports parallel dumps. 
+> [Neden Costom format kullanamlıyız adlı çalışma](http://zevross.com/blog/2014/06/11/use-postgresqls-custom-format-to-efficiently-backup-and-restore-tables/)
+
  
  ## Restore
- 
- The  pg_restore allows you to perform parallel restores using the  -j option to specify the number of threads for restoration. Each thread restores a separate table simultaneously, which speeds up the process dramatically. Currently, the  pg_restore support this option for the only custom file format.
+ Before restoring a database, you need to terminate all connections to that database and prepare the backup file. In PostgreSQL, you can restore a database in two ways: `psql` and `pg_restore`
 
-`psql -U username -f backupfile.sql`
+> The  `pg_restore` allows you to perform parallel restores using the  -j option to specify the number of threads for restoration. Each thread restores a separate table simultaneously, which speeds up the process dramatically. Currently, the  pg_restore support this option for the **only custom file** format.  
+psql  
+
+```
+psql -U digitalfactory -c "CREATE DATABASE mynewdb"
+pg_restore -U digitalfactory --dbname=mynewdb --clean /home/backup_v1.tar
+```
+
+### Restore Just schema from tar all db backup
+First, create a new database named dvdrental_tpl.  
+`CREATE DATABASE dvdrental_tpl;`
+Second, restore the table structure only from the dvdrental.tar backup file by using the following command:
+`pg_restore -U digitalfactory --dbname=dvdrental_tpl --create --section=pre-data  c:\pgbackup\dvdrental.tar`
+
+  - **-c**  or **--clean**
+    - Clean (drop) database objects before recreating them. (Unless --if-exists is used, this might generate some harmless error messages, if any objects were not    present in the destination database.)  
+
+  - **-C** or **--create**  
+    - Create the database before restoring into it. If --clean is also specified, drop and recreate the target database before connecting to it.
+
+  - **-d** *dbname*  or **--dbname=*dbname***  
+    - Connect to database dbname and restore directly into the database. The dbname can be a connection string. If so, connection string parameters will override any conflicting command line options. 
+    
+  - **-f** *filename* or **--file=filename**  
+    - Specify output file for generated script, or for the listing when used with -l. Use - for stdout.
   
-  
-  
-  
+  - **-s** or **--schema-only**  
+    - Restore only the schema (data definitions), not data, to the extent that schema entries are present in the archive.
   
   [postgresql-backup](https://www.postgresqltutorial.com/postgresql-backup-database/)
