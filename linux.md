@@ -11,3 +11,5 @@
 
 * To install a .deb file by opening a terminal and typing:
   `sudo dpkg -i package_file.deb`
+  
+* `chmod 777 file_name` çalıştırma izni verir. Eğer bir directory ise ve alt file lar için de izin isteniyorsa `chnod -R 777 fine_name` denilmeli.
