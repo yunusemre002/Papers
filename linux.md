@@ -15,14 +15,12 @@
 * `chmod 777 file_name` çalıştırma izni verir. Eğer bir directory ise ve alt file lar için de izin isteniyorsa `chnod -R 777 fine_name` denilmeli.
 
 ### `nano file` 
-* **Ctrl+K**   	Cut current line into cutbuffer
-* **Alt+6**	Copy current line into cutbuffer
-* **Ctrl+U**	Paste contents of cutbuffer
-* **Alt+T**	Cut until end of buffer
-* **Ctrl+]**	Complete current word
-* **Alt+3**	Comment/uncomment line/region
-* **Alt+U**	Undo last action
-* **Alt+E**	Redo last undone action
+* **Ctrl+K :**  Cut
+* **Alt+6  :**	Copy
+* **Ctrl+U:**	Paste
+* **Alt+3 :**	Comment/uncomment
+* **Alt+U :**	Undo
+* **Alt+E :**	Redo
 
 * **Alt+Del**	Delete current line
 
