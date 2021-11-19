@@ -14,7 +14,7 @@
   
 * `chmod 777 file_name` çalıştırma izni verir. Eğer bir directory ise ve alt file lar için de izin isteniyorsa `chnod -R 777 fine_name` denilmeli.
 
-### nano [file](https://www.nano-editor.org/dist/latest/cheatsheet.html)
+### `nano file` 
 * **Ctrl+K**   	Cut current line into cutbuffer
 * **Alt+6**	Copy current line into cutbuffer
 * **Ctrl+U**	Paste contents of cutbuffer
@@ -25,3 +25,7 @@
 * **Alt+E**	Redo last undone action
 
 * **Alt+Del**	Delete current line
+
+
+### Kaynaklar:
+* [nano](https://www.nano-editor.org/dist/latest/cheatsheet.html)
