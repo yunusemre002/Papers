@@ -13,3 +13,15 @@
   `sudo dpkg -i package_file.deb`
   
 * `chmod 777 file_name` çalıştırma izni verir. Eğer bir directory ise ve alt file lar için de izin isteniyorsa `chnod -R 777 fine_name` denilmeli.
+
+### nano [file](https://www.nano-editor.org/dist/latest/cheatsheet.html)
+* **Ctrl+K**   	Cut current line into cutbuffer
+* **Alt+6**	Copy current line into cutbuffer
+* **Ctrl+U**	Paste contents of cutbuffer
+* **Alt+T**	Cut until end of buffer
+* **Ctrl+]**	Complete current word
+* **Alt+3**	Comment/uncomment line/region
+* **Alt+U**	Undo last action
+* **Alt+E**	Redo last undone action
+
+* **Alt+Del**	Delete current line
