@@ -38,8 +38,8 @@ let SONUC=SAYI1+SAYI2
 echo "Toplama: "$SONUC
 ```
 ### if else  
-* **Aritmetik op:** -eq, -ne, -gt, -ge, -lt, -le (equal, not equal, greater, greater equal ...)  
-* **Metin op:** 0, =!, -z: Uzunluk sıfır, -n Uzunluk sıfır değil
+* **Aritmetik op:** -eq, -ne, -gt, -ge, -lt, -le (equal than, not equal, greater, greater equal ...)  
+* **Metin op:** 0, =!
 ```
 #!/bin/bash
 read -p "Give the fist number: " N1
@@ -54,8 +54,40 @@ fi
  echo "bunlar eşit değil bro"
 ```
 ```
+#!/bin/bash
+read -p "Give the word: " WORD
+if [ $WORD == "ali" ]
+then
+ echo "Word length:" ${#WORD} "and word is" $WORD
+elif [ $WORD == "veli" ]
+then
+ echo "Word length:" ${#WORD} "and word is" $WORD
+else
+  echo "The word isn't equel to 'ali' or 'veli' "
+fi
 ```
+```                              
+#!/bin/bash
+read -p "What is your name :" NAME
+read -sp "What is your password :" PSWD
+echo
+if [ $NAME = "YUNUS" ] && [ $PSWD = "123" ]
+then
+ echo " Everything is Okay!"
+else
+ echo " Wrong info the name doesn't macth with $NAME"
+fi
+```
+### For
+```
+#!/bin/bash
+KISILER=("Yusuf" "Ramazan" "Sinan" "Mehmet");
 
+for KISI in ${KISILER[*]}
+do
+ echo $KISI
+done
+```
 
 
 
