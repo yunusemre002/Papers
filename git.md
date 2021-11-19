@@ -57,7 +57,10 @@ git push -u origin --tags
 `git tag my_lightweight_tag`
 
 ### Annotated tag
+Açıklamalı, birsürü detay ile birlikte tagleme işlemi yapılmaktadır. Bunu kullanıyorum. Annotated tags are stored as full objects in the Git database. To reiterate, They store extra meta data such as: the tagger name, email, and date. Similar to commits and commit messages Annotated tags have a tagging message.  
 `git tag -a v1.0 -m 'Version 1.0'`
+* *-a:* annotated 
+* *-m:* ile mesaj belirtilir.
 
 ### Show list of the existing tags
 `git tag`
