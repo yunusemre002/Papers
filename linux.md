@@ -62,6 +62,16 @@ Kas 19 17:04:43 yed systemd[1]: Started TeamViewer remote control daemon.
 * **Alt+E :**	Redo
 * **Alt+Del**	Delete current line
 
+### Shortcuts
+* **CTRL+U** Terminale yazılan şeyleri siler.
+* **CTRL+A** İmleci terminale yazılan değerin başına getirir.
+* **CTRL+E** İmleci terminale yazılan değerin sonuna getirir.
+* **CTRL+L** Terminal ekranını temizler
+  
+  
+  
+  
+  
 
 ### Kaynaklar:
 * [nano](https://www.nano-editor.org/dist/latest/cheatsheet.html)
