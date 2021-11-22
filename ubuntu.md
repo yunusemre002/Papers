@@ -33,6 +33,7 @@ Tüm komutlrda `sudo` eki kullanamdan yazmak için kullanıcıya izin verilmesi 
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt -y install nodejs
 ```
+Eğer node versiyonun eskiyse `sudo n 14` deyince indirir.
 
 ### 5- VSCode:
 ```
