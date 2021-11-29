@@ -23,6 +23,10 @@ docker/home to local (run at localde)
 `docker cp C:\\Users\YED\Desktop\yedek influxdb:/home`  
 `influx restore --token oA88Brj9Ego3Uqw3oPfC4x_KlckWR7wORvIfKSsJoxg1aFPLf0Uw== /home/yedek`  
 
+### Not:  
+
+İnfluxdb de `retention policy: 2w` olan bir bucketın backup'ı alınır ve retention policy den kurtulmak istenirse. Restore edildikten sonra `retention policy: 365` olarak ayarlanır. (`never` yapılamıyor) 365 olarak ayarlanan bucket'taki backup dosyaları artık 1 sene içinde silinmeyecektir. Deneme koşulları: 18.11.21 tarihinde, içerisinde 1 haftalık veri olan ve `retenton policy: 2w` olan `boyahane_vtag` isimli bucket in backup'ı alındı. (from influx 2.1) ve başka makinede bir influxa restore edildi (v2.1). Restore edildikten sonra retention policy 365 olarak ayarlandı. 29.11.21 tarihinde veriler gözlemlendiğinde silinene veri olmadığı görüldü.
+
 --------------------------------------------------------------------------------------------------------------
 # Postgresql  
 ## Backup
