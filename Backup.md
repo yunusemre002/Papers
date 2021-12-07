@@ -24,8 +24,13 @@ docker/home to local (run at localde)
 `influx restore --token oA88Brj9Ego3Uqw3oPfC4x_KlckWR7wORvIfKSsJoxg1aFPLf0Uw== /home/yedek`  
 
 ### Not:  
-
+**influxdb de alınan bir backup fle retention policy bilgisiyle geliyor ama bu bilgi restore edildikten sonra değiştirilebiliryor.**
 İnfluxdb de `retention policy: 2w` olan bir bucketın backup'ı alınır ve retention policy den kurtulmak istenirse. Restore edildikten sonra `retention policy: 365` olarak ayarlanır. (`never` yapılamıyor) 365 olarak ayarlanan bucket'taki backup dosyaları artık 1 sene içinde silinmeyecektir. Deneme koşulları: 18.11.21 tarihinde, içerisinde 1 haftalık veri olan ve `retenton policy: 2w` olan `boyahane_vtag` isimli bucket in backup'ı alındı. (from influx 2.1) ve başka makinede bir influxa restore edildi (v2.1). Restore edildikten sonra retention policy 365 olarak ayarlandı. 29.11.21 tarihinde veriler gözlemlendiğinde silinene veri olmadığı görüldü.
+
+* 11.11.21 - 18.11.21 tarihleri arasında  verilerinizin olduğu boyahane_VTAG adlı bucket'ınız olsun.  
+* Bu bucketın retention policy’si 2w olsun.  
+* Bu bucketin 18.11.21 tarihinde bir backupı alındığında retention policy ile birlikte alınır. AMA **herhangi** bir tarihte (02.12.21) restore edilip retention * policy 365d olarak değiştirildiği taktirde 1 data silinmeyecek ve kullanılabilecektir.
+* Bu denemeler influxdb 2.1 ile yapılmıştır.
 
 --------------------------------------------------------------------------------------------------------------
 # Postgresql  
