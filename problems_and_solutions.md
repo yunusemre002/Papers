@@ -65,6 +65,8 @@
 - it has been finished. Anymore it can be entered without password.  
 - `ssh root@192.168.88.235`  
 
-
+# Forticlient cannot install into Ubuntu 20.04
+Alternatif olarak [ssl_vpn](https://hadler.me/linux/forticlient-sslvpn-deb-packages/ ) kullanılabilir.
+Watch this [link](https://www.youtube.com/watch?v=0RodMfQHoLA&ab_channel=veTechno)
 
 
