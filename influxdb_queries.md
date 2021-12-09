@@ -67,28 +67,51 @@ from(bucket: "boyahane_VTAG")
 ```
 **Soru :** istenilen aralık için consumption değerlerini hesaplayınız.
 **Çözüm :** 
-* istenilen aralık range ile getirtilir. `consumption` bilgisi sürekli artan olarak kaydedildiği
-için range ile bu aralık getirtilir.
-* `aggregateWindow()` kullanılarak, olası "saniyede 1 kayıt olmaması" durumunun önüne geçilmiş olunur.
-aynı zamanda ms bilgiside 00 olarak ayarlanmış olur. 
-* regex yardımıyla istenilen sattlere en yakın ve veri olması en muhtelen zamndilimleri seçilir.
-  - start_time: bir sonraki çift sayıya yuvarlanacak.
-  - end_time:, bir önceki çift sayıya yuvarlanacak.
-* Eğer bu aggregateWİndow için herhangi start ||| end bulunamazsa aggregateWindow -> 
-  - every: 10s 
-    - start_time: bir sonraki x0'lı sayıya yuvarlanacak.
-    - end_time: bir önceki x0'lı sayıya yuvarlanacak.
-  - every: 10m
-    - start_time: bir sonraki 00'lı sayıya yuvarlanacak.
-    - end_time: bir önceki 00'lı sayıya yuvarlanacak.
-  Böylelikle 3 hassasiyet derecesi elde edilmiş. olacak.
-  
- Alternatif çözüm: ilgili range için fist and last row alınabilirdi ama mesela 10 saatlik bir aralık için sadece ortada 2 saatlik bir veri varsa
- bu verinin başlangıç bitiş değerlerini alır ve 10 saatlik bir işlemin tüketim bilgisini 2 saatlik tüketim verisi ile doldurur. Yanlış hesaplamalara sebebiyet verir.
- 
-`hassasiyet_derecesi` isimli extra bir column eklenebilir. Bu column, aggregateWindow ile doğru orantılı olur. 
-aggregateWindow = 2s ise hassasiyet derecesi de 2s olur. Eğer aggregateWindow=2s iken start || end bilgisi 
-bulunamazsa, bulunamayan için hassasiyet derecesi arttırılıp birdaha sorgu yapılır. Derece tali 1m olana
-kadar arttırılır. Bu arttırım sonunda hala bir consumption değeri bulunamazsa (influxdb de yoktur.) 
-ilgili aralık için tüketim değeri hesaplanamaz.
+1. istenilen aralık range ile getirtilir. `consumption` bilgisi sürekli artan olarak kaydedildiği
+  için range ile bu aralık getirtilir.
+  - `aggregateWindow()` kullanılarak, olası "saniyede 1 kayıt olmaması" durumunun önüne geçilmiş olunur.
+  aynı zamanda ms bilgiside 00 olarak ayarlanmış olur. 
+  * regex yardımıyla istenilen sattlere en yakın ve veri olması en muhtelen zamndilimleri seçilir.
+    - start_time: bir sonraki çift sayıya yuvarlanacak.
+    - end_time:, bir önceki çift sayıya yuvarlanacak.
+  * Eğer bu aggregateWİndow için herhangi start ||| end bulunamazsa aggregateWindow -> 
+    - every: 10s 
+      - start_time: bir sonraki x0'lı sayıya yuvarlanacak.
+      - end_time: bir önceki x0'lı sayıya yuvarlanacak.
+    - every: 10m
+      - start_time: bir sonraki 00'lı sayıya yuvarlanacak.
+      - end_time: bir önceki 00'lı sayıya yuvarlanacak.
+    Böylelikle 3 hassasiyet derecesi elde edilmiş. olacak.
 
+    `hassasiyet_derecesi` isimli extra bir column eklenebilir. Bu column, aggregateWindow ile doğru orantılı olur. 
+    aggregateWindow = 2s ise hassasiyet derecesi de 2s olur. Eğer aggregateWindow=2s iken start || end bilgisi 
+    bulunamazsa, bulunamayan için hassasiyet derecesi arttırılıp birdaha sorgu yapılır. Derece tali 1m olana
+    kadar arttırılır. Bu arttırım sonunda hala bir consumption değeri bulunamazsa (influxdb de yoktur.) 
+    ilgili aralık için tüketim değeri hesaplanamaz.
+
+2. Alternatif çözüm: ilgili range için fist and last row alınabilirdi ama mesela 10 saatlik bir aralık için sadece ortada 2 saatlik bir veri varsa
+bu verinin başlangıç bitiş değerlerini alır ve 10 saatlik bir işlemin tüketim bilgisini 2 saatlik tüketim verisi ile doldurur. Yanlış hesaplamalara sebebiyet    verir.
+   
+3. Aşağıdaki sorgu yapılır ve bu koda döndürülür daha sonra kodda gerçek saatlerde n gelen saatler çıkartılarak istenilen saatten ne kadar sapma ile bilgi geldiği ölçülür bu sapmalamar extra bir kolon olarak ekleneir bu sapmaların toplamından bir değer elde edilir bu değer de hassasiyet derecesi kolonunu doldurmamıza yardımcı olur. hassasiyet dereces,i kolonunun değerlerinin neler olacağı daha düşünülmedi.
+      ```
+      import "influxdata/influxdb/schema"
+      first = from(bucket: "boyahane_VTAG")
+                  |> range(start: 2021-12-01T08:08:04.050Z, stop: 2021-12-01T09:08:31.040Z)
+                  |> filter(fn: (r) => r["_measurement"] == "consumptions")
+                  |> filter(fn: (r) => r["machine_id"] == "15")
+                  |> first()
+                  |> schema.fieldsAsCols()
+
+      last  = from(bucket: "boyahane_VTAG")
+                  |> range(start: 2021-12-01T08:08:04.050Z, stop: 2021-12-01T09:08:31.040Z)
+                  |> filter(fn: (r) => r["_measurement"] == "consumptions")
+                  |> filter(fn: (r) => r["machine_id"] == "15")
+                  |> last()
+                  |> schema.fieldsAsCols()
+
+
+      union(tables: [first, last])
+      |> drop(columns: ["_measurement", "_start", "_stop"])
+      |> sort(columns: ["_time"], desc: false)
+    ```
+    
