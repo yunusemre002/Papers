@@ -47,6 +47,25 @@ influx delete \
   --org "eliar" \
   --predicate '_measurement="machine_info"'
 ```
+# İki farklı measurement'i birleştirme:
+iki farklı measurement taki bilgilerin (aynı timestamp,machine_name,machine_id ye sahip) aynı satırda göstrilmesi.
+Drop denilerek farklılık yaratan \_measurement bilgisi düşürülür ve daha sonra (bu sralama önemli) fieldsAsCols
+denilerek aynı timestamp ve tag'e ait bilgilerin tek kolonda buluşması sağlanır
+```
+import "influxdata/influxdb/schema"
+from(bucket: "boyahane_VTAG")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "consumptions" or r["_measurement"] == "machine_info")
+  |> filter(fn: (r) => r["machine_id"] == "15")
+  |> filter(fn: (r) =>  r["_field"] == "machine_type" or  r["_field"] == "CONS_COLD_WATER"
+                     or r["_field"] == "CONS_NATURAL_GAS" or  r["_field"] == "CONS_ELECTRICITY"
+                     or r["_field"] == "CONS_HOT_WATER" or  r["_field"] == "CONS_HARD_WATER" 
+                     or r["_field"] == "CONS_STEAM" or  r["_field"] == "CONS_WATER" 
+            )
+  |> first()
+  |> drop(columns: ["_measurement", "_start", "_stop"])
+  |> schema.fieldsAsCols()
+```
 
 
 # influxdb verilen süreler aralığında hesaplama yapma
@@ -65,6 +84,7 @@ from(bucket: "boyahane_VTAG")
             )
   |> schema.fieldsAsCols()
 ```
+
 **Soru :** istenilen aralık için consumption değerlerini hesaplayınız.
 **Çözüm :** 
 1. istenilen aralık range ile getirtilir. `consumption` bilgisi sürekli artan olarak kaydedildiği
