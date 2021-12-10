@@ -57,15 +57,17 @@ from(bucket: "boyahane_VTAG")
   |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
   |> filter(fn: (r) => r["_measurement"] == "consumptions" or r["_measurement"] == "machine_info")
   |> filter(fn: (r) => r["machine_id"] == "15")
-  |> filter(fn: (r) =>  r["_field"] == "machine_type"
-                     or r["_field"] == "CONS_NATURAL_GAS" 
-                     or r["_field"] == "CONS_ELECTRICITY"
-                     or r["_field"] == "CONS_STEAM" 
-                     or r["_field"] == "CONS_WATER" 
+  |> filter(fn: (r) =>  r["_field"] == "machine_type" or  r["_field"] == "CONS_COLD_WATER"
+                     or r["_field"] == "CONS_NATURAL_GAS" or r["_field"] == "CONS_ELECTRICITY"
+                     or r["_field"] == "CONS_HOT_WATER" or r["_field"] == "CONS_HARD_WATER" 
+                     or r["_field"] == "CONS_STEAM" or r["_field"] == "CONS_WATER" 
             )
   |> first()
   |> drop(columns: ["_measurement", "_start", "_stop"])
   |> schema.fieldsAsCols()
+
+
+
 ```
 
 
