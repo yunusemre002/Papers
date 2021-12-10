@@ -65,9 +65,6 @@ from(bucket: "boyahane_VTAG")
   |> first()
   |> drop(columns: ["_measurement", "_start", "_stop"])
   |> schema.fieldsAsCols()
-
-
-
 ```
 
 
