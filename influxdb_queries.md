@@ -134,4 +134,42 @@ bu verinin başlangıç bitiş değerlerini alır ve 10 saatlik bir işlemin tü
       |> drop(columns: ["_measurement", "_start", "_stop"])
       |> sort(columns: ["_time"], desc: false)
     ```
-    
+    Total hesabınıda influxdb ye yaptırmak için:
+    ```
+    import "influxdata/influxdb/schema"
+    first = from(bucket: "boyahane_VTAG")
+                |> range(start: 2021-12-07T08:08:04.050Z, stop: 2021-12-07T09:08:31.040Z)
+                |> filter(fn: (r) => r["_measurement"] == "consumptions")
+                |> filter(fn: (r) => r["machine_id"] == "75")
+                |> first()
+
+    last  = from(bucket: "boyahane_VTAG")
+                |> range(start: 2021-12-07T08:08:04.050Z, stop: 2021-12-07T09:08:31.040Z)
+                |> filter(fn: (r) => r["_measurement"] == "consumptions")
+                |> filter(fn: (r) => r["machine_id"] == "75")
+                |> last()
+
+    total = union(tables: [first, last])
+                |> sort(columns: ["_value"], desc: false)               // Önemli!
+                |> difference(nonNegative: false, columns: ["_value"])
+                |> map(fn: (r) => ({ r with _time: now() }))            // Son satırda yer alması için versik bunu. 
+
+    // Bu alttakileri eklememin sebebi, hangi satırın ne ifade ettiği bilinmesi içindir.
+    // Her ne kadar bu bilgiler belirli bir sıra ile verilsede ek bilgi satırının olması 
+    // Okuyucu açısından daha anlamlıdır.
+    first_row = first
+                |> schema.fieldsAsCols()
+                |> set(key: "row_info", value: "start")
+
+    last_row  = last
+                |> schema.fieldsAsCols()
+                |> set(key: "row_info", value: "finish")
+
+    total_row = total
+                |> schema.fieldsAsCols()
+                |> set(key: "row_info", value: "total")
+
+    union(tables: [first_row, last_row, total_row])
+    |> drop(columns: ["_measurement", "_start", "_stop"])
+    |> sort(columns: ["_time"], desc: false)
+    ```
