@@ -47,7 +47,7 @@ Name: 0, dtype: int64
 # Convert time to T Z format
 ```
 from datetime import datetime
-reg_format_date = datetime.utcnow().isoformat() + "Z"
+format_date = datetime.utcnow().isoformat()[:-3]+'Z'
 ```
 ```
 print(datetime.now())                         2021-12-14 15:53:55.746994
