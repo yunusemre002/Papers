@@ -44,7 +44,7 @@ Name: 0, dtype: int64
  [10 40 70]  
  
  
-# Convert time to T Z format
+# Convert datetime to T Z format
 ```
 from datetime import datetime
 format_date = datetime.utcnow().isoformat()[:-3]+'Z'
