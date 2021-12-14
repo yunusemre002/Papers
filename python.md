@@ -43,3 +43,15 @@ Name: 0, dtype: int64
 `print(df2.col1.values)`  
  [10 40 70]  
  
+ 
+# Convert time to T Z format
+```
+from datetime import datetime
+reg_format_date = datetime.utcnow().isoformat() + "Z"
+```
+```
+print(datetime.now())                         2021-12-14 15:53:55.746994
+print(datetime.utcnow())                      2021-12-14 12:53:55.747053
+print(datetime.utcnow().isoformat())          2021-12-14T12:53:55.747063
+print(datetime.utcnow().isoformat() + "Z")    2021-12-14T12:53:55.747071Z
+```
