@@ -56,3 +56,10 @@ print(datetime.utcnow().isoformat())          2021-12-14T12:53:55.747063
 print(datetime.utcnow().isoformat() + "Z")    2021-12-14T12:53:55.747071Z
 print(datetime.utcnow().isoformat()[:-3]+'Z') 2021-12-14T12:53:55.747Z
 ```
+
+# substract -10m from datetime
+```
+from datetime import datetime, timedelta
+new_datetime = (datetime.utcnow() - timedelta(minutes=10))
+
+```
