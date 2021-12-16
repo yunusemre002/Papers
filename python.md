@@ -65,7 +65,7 @@ from datetime import datetime, timedelta
 new_datetime = (datetime.utcnow() - timedelta(minutes=10))
 
 ```
-# Add timezone info datetime obj
+# Add tzinfo datetime obj
 Sadece verilen timezone blgisini ekler. UTC dersen datetime'a +00:00 ekler. timezone bilgisi olmayan datetime objesinin hengi zaman dilimine ait olduğunu anlayamaz tabi, aynı objeye Konum turkey dersen sonuna, +03:00 ekler.
 ```
 from datetime import datetime 
@@ -87,4 +87,9 @@ naive: 2021-12-15 16:22:37.911960
 aware: 2021-12-15 16:22:37.911960+03:00
 naive_UTC: 2021-12-15 13:22:37.919537 
 aware_UTC: 2021-12-15 13:22:37.919537+00:00
+```
+
+# Remove tzinfo
+```
+withouttzinfo = datetimewithtzinfo.replace(tzinfo=None)
 ```
