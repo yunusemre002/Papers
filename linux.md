@@ -5,7 +5,9 @@
 * `du -h` 	for human readable sizes for directories  
   
 * find needs a starting point, and the . (dot) points to the current directory.  
-`find . -name "foo*"`
+`find . -name "foo*"`  
+`find ~ -name lale`  /home kullanıcı altındaki tüm heryerde lale isimli şeyleri ara.  
+`find ~ -iname lalE`  /home kullanıcı altındaki tüm heryerde lale, LALE, LaLe... isimli şeyleri ara. (case unsensitive)  
 
 * To install a .deb file by opening a terminal and typing:
   `sudo dpkg -i package_file.deb`
@@ -49,9 +51,12 @@ Kas 19 17:04:43 yed systemd[1]: teamviewerd.service: Can't open PID file /run/te
 Kas 19 17:04:43 yed systemd[1]: Started TeamViewer remote control daemon.
 
 ```
-
-`history` derseniz geçmiş komutlara bakılabilir.
-
+### Genel
+* `history` derseniz geçmiş komutlara bakılabilir.
+* `../` bir alt dizin
+* `.` current directory
+* `shutdown -h now`
+* `cp ../a.txt .` bir alt directory'den (mkdir dizin, touch a.txt, cd dizin)  
 
 ### `nano file` 
 * **Ctrl+K :**  Cut
@@ -68,14 +73,14 @@ Kas 19 17:04:43 yed systemd[1]: Started TeamViewer remote control daemon.
 * **CTRL+E** İmleci terminale yazılan değerin sonuna getirir.
 * **CTRL+L** Terminal ekranını temizler
   
-# Kullanıcı işlemleri
-`cat /etc/passwd` kullanıcı listesini tututyor.
-`ls -l /home` var olan kullanıcı isimlerini görebilirsiniz.  
-`sudo passwd yed` taner kullanıcısının şifresinin değiştir.  
-`su yed` switch user ile yed kullanıcısına geçilir.  
-`sudo deluser yed` sil.  
-Ama kullanıcı directory'si silinmez. İçinde önemli bişiler olabilir idiye.BU dizin /home altında bulunur. Bu dizini silmek için aşağıdaki komut kullanılır.
-`sudo rm -rf yed` -r dizin sil içindekilerle birlikte f force et sorular sorarsa yes de.
+## Kullanıcı işlemleri
+* `cat /etc/passwd` kullanıcı listesini tututyor.
+* `ls -l /home` var olan kullanıcı isimlerini görebilirsiniz.  
+* `sudo passwd yed` taner kullanıcısının şifresinin değiştir.  
+* `su yed` switch user ile yed kullanıcısına geçilir.  
+* `sudo deluser yed` sil.  
+    Ama kullanıcı directory'si silinmez. İçinde önemli bişiler olabilir idiye.BU dizin /home altında bulunur. Bu dizini silmek için aşağıdaki komut kullanılır.
+* `sudo rm -rf yed` -r dizin sil içindekilerle birlikte f force et sorular sorarsa yes de.
 
   
 
