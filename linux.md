@@ -50,7 +50,7 @@ Kas 19 17:04:43 yed systemd[1]: Started TeamViewer remote control daemon.
 
 ```
 
-
+`history` derseniz geçmiş komutlara bakılabilir.
 
 
 ### `nano file` 
@@ -68,9 +68,15 @@ Kas 19 17:04:43 yed systemd[1]: Started TeamViewer remote control daemon.
 * **CTRL+E** İmleci terminale yazılan değerin sonuna getirir.
 * **CTRL+L** Terminal ekranını temizler
   
-  
-  
-  
+# Kullanıcı işlemleri
+`cat /etc/passwd` kullanıcı listesini tututyor.
+`ls -l /home` var olan kullanıcı isimlerini görebilirsiniz.  
+`sudo passwd yed` taner kullanıcısının şifresinin değiştir.  
+`su yed` switch user ile yed kullanıcısına geçilir.  
+`sudo deluser yed` sil.  
+Ama kullanıcı directory'si silinmez. İçinde önemli bişiler olabilir idiye.BU dizin /home altında bulunur. Bu dizini silmek için aşağıdaki komut kullanılır.
+`sudo rm -rf yed` -r dizin sil içindekilerle birlikte f force et sorular sorarsa yes de.
+
   
 
 ### Kaynaklar:
