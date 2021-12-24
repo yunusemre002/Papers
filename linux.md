@@ -3,6 +3,7 @@
 * `ls -s` 	to list file size,  
 * `ls -sh` 	for human readable sizes.  
 * `du -h` 	for human readable sizes for directories  
+* `du -sch /home/*` home altındaki tüm folderların sizenı söyler
   
 * find needs a starting point, and the . (dot) points to the current directory.  
 `find . -name "foo*"`  
