@@ -173,3 +173,18 @@ bu verinin başlangıç bitiş değerlerini alır ve 10 saatlik bir işlemin tü
     |> drop(columns: ["_measurement", "_start", "_stop"])
     |> sort(columns: ["_time"], desc: false)
     ```
+# Değişimleri Bulmak (integer değerlerde)
+Eğer elimizde saniye bazlı veri varsa ve bu veriler çok sık değişmiyorsa. BU sık değişmeme durumundan dolayı sadece değişimleri mi kaydetsek ya? diye düşünebiliriz. Bu kayıt şekline event based kayıt denilmektedir. Aşağıda saniye bazlı kaydı tutulan integer değerlerin değişimlerini nasıl tuutlacağına
+dair sorgu bulunmaktadır.
+```
+from(bucket: "boyahane_VTAG")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "machine_info")
+  |> filter(fn: (r) => r["_field"] == "active_operator_no")
+  |> map(fn: (r) => ({ r with org_value: r._value }))
+  |> difference(nonNegative: false, columns: ["_value"])
+  |> filter(fn: (r) => r._value != 0)
+  |> map(fn: (r) => ({ r with _value: r.org_value }))
+  |> drop(columns: ["org_value"])
+```
+**Bu sorgu aslında ne yapıyor?** `_value` kolonundaki değerleri `org_value` diye bir kolona kopyalıyor. Sonra `_value` kolonuna göre difference alıyor. Yani birbirini takip eden 2 satırın farkını alıp yeni bir satır oluşturuyor. Bu fark 0 olanlar siliniyor. Demekki aynı değer tekrar etmiş. Saha sonra `org_value` isimli kolona taşıdığımız esas değerler geri `_value` kolonuna alınıyor ve `org_value` isimli kolon siliniyor. Sonuç olarak sadece değişime ait değerlerin olduğu satırlar tututlmuş oluyor.
