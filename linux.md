@@ -13,7 +13,7 @@
 * To install a .deb file by opening a terminal and typing:
   `sudo dpkg -i package_file.deb`
 ### Dosya izinleri [Bkz.](https://www.yusufsezer.com.tr/linux-dosya-ve-dizin-izinleri/)
-* `chmod 777 file_name` Herkese (-o, -g, -u) tüm izinleri (-r, -w, -x) verir. Eğer bir directory ise ve alt file lar için de izin isteniyorsa `chmod -R 777 fine_name` denilmeli. Bunun için güzel dökümanlar va r neden 7 neden user belirtilmiyor vs.
+* `chmod 777 file_name` Herkese (-o, -g, -u) tüm izinleri (-r, -w, -x; 4, 2, 1) verir. Eğer bir directory ise ve alt file lar için de izin isteniyorsa `chmod -R 777 fine_name` denilmeli. Bunun için güzel dökümanlar va r neden 7 neden user belirtilmiyor vs. 6 dersen rw verir mesela.
 * Tüm kullanıcılara sadece çalıştırma izni verilmesi için `chmod +x file_name`
 * `chown yunus file` --> Changes the ownership of the file from its current owner to user bob.
 
@@ -31,7 +31,12 @@ yed@yed:~/Desktop$ cal 1453
 
 # tüm takvimi verir
 ```
-* `top`
+## işlemler
+* `top` çalışmakta olan precessleri söyler. pid: her biri unique
+* `ps aux` tüm çalışan processleri göstrir. ls tüm file'ları listeler ps te tüm process'leri
+* `ps aux | grep firefox` çalışan tüm komutlar  üzerinde (|) sadece firefox kullanımını göster
+* `kill -9 3344` 3344= pid 
+* ``
 * `pgrep teamviewed`
 * `pkill teamviewed`
 * `service teamviewed restart`
