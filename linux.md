@@ -3,7 +3,7 @@
 * `ls -s` 	to list file size,  
 * `ls -sh` 	for human readable sizes.  
 * `du -h` 	for human readable sizes for directories  
-* `du -sch /home/*` home altındaki tüm folderların sizenı söyler
+* `du -sch /home/*` home altındaki tüm folderların sizenı söyler. du:disk usage; -s, --summarize; -c, --total; -h, --human-readable [readable](https://man7.org/linux/man-pages/man1/du.1.html)
   
 * find needs a starting point, and the . (dot) points to the current directory.  
 `find . -name "foo*"`  
@@ -63,6 +63,7 @@ Kas 19 17:04:43 yed systemd[1]: Started TeamViewer remote control daemon.
 * `.` current directory
 * `shutdown -h now`
 * `cp ../a.txt .` bir alt directory'den (mkdir dizin, touch a.txt, cd dizin)  
+* `head -20 file.txt, son 20 satırını oku
 
 ### `nano file` 
 * **Ctrl+K :**  Cut
