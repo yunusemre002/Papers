@@ -1,9 +1,9 @@
-
+# Size info
 * `ls -lh`	the apparent space of the directory and true space of the files and in details the names, creation date of each.  
 * `ls -s` 	to list file size,  
 * `ls -sh` 	for human readable sizes.  
 * `du -h` 	for human readable sizes for directories  
-* `du -sch /home/*` home altındaki tüm folderların sizenı söyler. du:disk usage; -s, --summarize; -c, --total; -h, --human-readable [readable](https://man7.org/linux/man-pages/man1/du.1.html)
+* `du -sch /home/*` home altındaki tüm folderların sizenı söyler. [du](https://man7.org/linux/man-pages/man1/du.1.html):disk usage; -s, --summarize; -c, --total; -h, --human-readable
   
 * find needs a starting point, and the . (dot) points to the current directory.  
 `find . -name "foo*"`  
@@ -36,7 +36,6 @@ yed@yed:~/Desktop$ cal 1453
 * `ps aux` tüm çalışan processleri göstrir. ls tüm file'ları listeler ps te tüm process'leri
 * `ps aux | grep firefox` çalışan tüm komutlar  üzerinde (|) sadece firefox kullanımını göster
 * `kill -9 3344` 3344= pid 
-* ``
 * `pgrep teamviewed`
 * `pkill teamviewed`
 * `service teamviewed restart`
@@ -63,7 +62,7 @@ Kas 19 17:04:43 yed systemd[1]: Started TeamViewer remote control daemon.
 * `.` current directory
 * `shutdown -h now`
 * `cp ../a.txt .` bir alt directory'den (mkdir dizin, touch a.txt, cd dizin)  
-* `head -20 file.txt, son 20 satırını oku
+* `head -20 file.txt` son 20 satırını oku
 
 ### `nano file` 
 * **Ctrl+K :**  Cut
