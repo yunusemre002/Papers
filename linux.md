@@ -43,6 +43,7 @@ yed@yed:~/Desktop$ cal 1453
 * `ls . &> /dev/null` `ls .` bulunduğun konumdaki şeyleri listele &> çıktılarını (stderr ve stdout çıktılarını) /dev/null'a yaz yani çöpe gitsin bunlar.
   - `>` sadece stdout'ları al
   - `>>` sonrasında yazılan dosyaya append et.
+  - ![stderr_and_stdout](https://github.com/yunusemre002/Papers/blob/main/photos/linux_stderr_stdout.png)
 ```
 ● teamviewerd.service - TeamViewer remote control daemon
      Loaded: loaded (/etc/systemd/system/teamviewerd.service; enabled; vendor preset: enabled)
