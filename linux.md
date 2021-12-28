@@ -40,6 +40,9 @@ yed@yed:~/Desktop$ cal 1453
 * `pkill teamviewed`
 * `service teamviewed restart`
 * `service <servis_adi> status` ex: `service teamviewed status` 
+* `ls . &> /dev/null` `ls .` bulunduğun konumdaki şeyleri listele &> çıktılarını (stderr ve stdout çıktılarını) /dev/null'a yaz yani çöpe gitsin bunlar.
+  - `>` sadece stdout'ları al
+  - `>>` sonrasında yazılan dosyaya append et.
 ```
 ● teamviewerd.service - TeamViewer remote control daemon
      Loaded: loaded (/etc/systemd/system/teamviewerd.service; enabled; vendor preset: enabled)
