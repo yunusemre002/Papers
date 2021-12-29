@@ -41,12 +41,12 @@ diff = from(bucket: "pc-inf")
 # DELETE _MEASUREMENT
 ```
 influx delete \
-  --bucket "boyahane_VTAG" \
+  --bucket "boyahane_VTAG_agg" \
   --start 2021-01-01T00:00:00Z \
-  --stop 2021-12-01T00:00:00Z \
-  --org "eliar" \
+  --stop $(date +"%Y-%m-%dT%H:%M:%SZ") \
   --predicate '_measurement="machine_info"'
 ```
+
 # İki farklı measurement'i birleştirme:
 iki farklı measurement taki bilgilerin (aynı timestamp,machine_name,machine_id ye sahip) aynı satırda göstrilmesi.
 Drop denilerek farklılık yaratan \_measurement bilgisi düşürülür ve daha sonra (bu sralama önemli) fieldsAsCols
