@@ -69,4 +69,9 @@
 Alternatif olarak [ssl_vpn](https://hadler.me/linux/forticlient-sslvpn-deb-packages/ ) kullanılabilir.
 Watch this [link](https://www.youtube.com/watch?v=0RodMfQHoLA&ab_channel=veTechno)
 
-
+# Ubuntu bozuldu ekran gelmiyor. BIOS ekranında kalıyor. Ama yazı yazamıyorsan
+`ctrl alt f1` || `ctrl alt f2` || `ctrl alt f3`
+I experienced the same problem; though Mark's (top answer) solution didn't immediately work (since ctrl+alt+F2 etc. brings up a flickering TTYL which is nearly impossible to use), his suggested cause was correct, as it was a problem with the nvidia [driver.](https://askubuntu.com/questions/882385/dev-sda1-clean-this-message-appears-after-i-startup-my-laptop-then-it-w )
+`sudo apt-get purge nvidia*`
+`sudo ubuntu-drivers autoinstall` #Make sure you have internet connection
+https://askubuntu.com/questions/951046/unable-to-install-nvidia-drivers-unable-to-locate-package
