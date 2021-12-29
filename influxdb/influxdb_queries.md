@@ -38,7 +38,7 @@ diff = from(bucket: "pc-inf")
 //   |> set(key: "fabrika", value: "1")
   |> yield(name: "diff")
   ```
-
+# DELETE _MEASUREMENT
 ```
 influx delete \
   --bucket "boyahane_VTAG" \
