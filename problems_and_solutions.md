@@ -75,3 +75,22 @@ I experienced the same problem; though Mark's (top answer) solution didn't immed
 `sudo apt-get purge nvidia*`
 `sudo ubuntu-drivers autoinstall` #Make sure you have internet connection
 https://askubuntu.com/questions/951046/unable-to-install-nvidia-drivers-unable-to-locate-package
+
+# Ubuntu 20.04 No Wifi Adapter Found. Lenovo Ideapad Realtek
+To get the realtek 8852 PCI adapter working with Ubuntu, follow these [steps:](https://askubuntu.com/questions/1352731/ubuntu-20-04-no-wifi-adapter-found-lenovo-ideapad-realtek)
+
+Download dependencies:
+```
+sudo apt-get update
+sudo apt-get install make gcc linux-headers-$(uname -r) build-essential git
+```  
+Install 'fix':
+```
+git clone https://github.com/lwfinger/rtw89.git -b v5
+cd rtw89 && make && sudo make install
+``` 
+load module:
+```
+sudo modprobe rtw89pci
+```  
+
