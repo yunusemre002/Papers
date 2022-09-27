@@ -3,3 +3,5 @@
 * **Tüm fonksiyonlatı kapat:** press F1 and type Fold 1 or Unfold
 
 * **Create a requirements.txt file:** `pip freeze > requirements.txt`
+
+* Define **Jupyter-like code cells** within Python code : `# %%` 
